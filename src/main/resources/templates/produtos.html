@@ -13,15 +13,11 @@
             <tr>
                 <td>Id</td>
                 <td>Nome</td>
-                <td>Descrição</td>
-                <td>Categoria</td>
                 <td>Preço</td>
             </tr>
             <tr th:each="produto : ${produtos}">
                 <td th:text="${produto.id}"></td>
                 <td th:text="${produto.nome}"></td>
-                <td th:text="${produto.descricao}"></td>
-                <td th:text="${produto.categoria.descricao}"></td>
                 <td th:text="${produto.preco}"></td>
             </tr>
         </table>
