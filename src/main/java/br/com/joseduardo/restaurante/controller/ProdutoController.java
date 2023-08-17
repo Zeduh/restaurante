@@ -9,6 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -36,10 +38,10 @@ public class ProdutoController {
     }
 
     @PostMapping("/cadastra")
-    public String cadastra(ProdutoFormImputDto produtoFormImputDto, Model model){
-        Produto produto = produtoFormImputDto.toProduto();
+    public String cadastra(Produto produto, RedirectAttributes redirectAttributes){
         this.dao.cadastra(produto);
-        return lista(model);
+        redirectAttributes.addFlashAttribute("sucesso", "Produto cadastrado com sucesso!");
+        return "redirect:/produto/lista";
     }
 
 }
