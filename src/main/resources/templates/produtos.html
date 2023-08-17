@@ -8,14 +8,22 @@
     </head>
 
     <body>
-        <h2> Título da Página</h2>
+        <h3>Lista de Produtos</h3>
 
-        <button type="button" th:onclick="alerta()">Alerta</button>
+        <span th:text="${sucesso}"></span>
+
+        <table>
+            <tr>
+                <td>Id</td>
+                <td>Nome</td>
+                <td>Preço</td>
+            </tr>
+            <tr th:each="produto : ${produtos}">
+                <td th:text="${produto.id}"></td>
+                <td th:text="${produto.nome}"></td>
+                <td th:text="${produto.preco}"></td>
+            </tr>
+        </table>
     </body>
 
-    <footer th:replace="~{rodape :: rodape}"></footer>
-
 </html>
-
-<!-- Absoluto: envia a requisição para outro servidor, contem o protocolo -->
-<!-- Relativo: Relativo ao seu contexto(seu servidor), nesse caso ao localhost:8080 -->
