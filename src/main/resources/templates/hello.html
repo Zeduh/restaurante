@@ -18,6 +18,7 @@
             <td>NOME</td>
             <td>PREÇO</td>
             <td>ESTOQUE</td>
+            <td>VALIDADE</td>
         </tr>
         <tr th:each="produto : ${produtos}">
             <td><span th:text="${produto.id}"></span></td>
@@ -30,9 +31,15 @@
                 <span th:text="${produto.emEstoque} ? 'Disponível' : 'Indisponível'"></span>
 
             </td>
+
+            <td>
+                <span th:text="${#temporals.format(produto.validade, 'dd/MM/yyyy')}"></span>
+            </td>
+            
         </tr>
     </table>
-
-
 </body>
+<div th:include="~{rodape :: rodape}"></div> //mantém como DIV
+<div th:replace="~{rodape :: rodape}"></div> //substitui DIV por footer
+<div th:insert="~{rodape :: rodape}"></div> //insere footer dentro da DIV
 </html>
