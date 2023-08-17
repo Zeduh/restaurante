@@ -2,12 +2,20 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
+        <link th:href="@{/produto/css/produto.css}" rel="stylesheet" />
+        <script type="text/javascript" th:src="@{/produto/js/produto.js}" ></script>
         <title>Produtos</title>
     </head>
+
     <body>
-        Página de produtos: <span th:text="${produtos.size}"></span>
-        <br>
-        José
+        <h2> Título da Página</h2>
+
+        <button type="button" th:onclick="alerta()">Alerta</button>
     </body>
+
     <footer th:replace="~{rodape :: rodape}"></footer>
+
 </html>
+
+<!-- Absoluto: envia a requisição para outro servidor, contem o protocolo -->
+<!-- Relativo: Relativo ao seu contexto(seu servidor), nesse caso ao localhost:8080 -->
