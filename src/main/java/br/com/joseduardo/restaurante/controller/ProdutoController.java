@@ -3,11 +3,12 @@ import Dao.ProdutoDao;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/home")
-public class HomeController {
+@RequestMapping("/produto")
+public class ProdutoController {
 
     private ProdutoDao dao = new ProdutoDao();
 
@@ -17,6 +18,16 @@ public class HomeController {
         model.addAttribute("produtos", dao.lista());
 
         return "produtos";
+    }
+
+    @GetMapping("/form")
+    public String form(){
+        return "form";
+    }
+
+    @PostMapping("/cadastra")
+    public void cadastra(){
+        System.out.println("**** Metodo de cadastro");
     }
 
 }
