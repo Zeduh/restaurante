@@ -2,7 +2,6 @@ package br.com.joseduardo.restaurante.controller;
 import Dao.ProdutoDao;
 import model.Categoria;
 import model.Produto;
-import model.dto.ProdutoFormImputDto;
 import model.dto.ProdutoOutputDto;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
