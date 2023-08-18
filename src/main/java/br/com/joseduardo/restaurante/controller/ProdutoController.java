@@ -1,9 +1,10 @@
 package br.com.joseduardo.restaurante.controller;
-import Dao.ProdutoDao;
-import model.Categoria;
-import model.Produto;
-import model.dto.ProdutoFormImputDto;
-import model.dto.ProdutoOutputDto;
+import br.com.joseduardo.restaurante.dao.ProdutoDao;
+import br.com.joseduardo.restaurante.model.Categoria;
+import br.com.joseduardo.restaurante.model.Produto;
+import br.com.joseduardo.restaurante.model.dto.ProdutoFormImputDto;
+import br.com.joseduardo.restaurante.model.dto.ProdutoOutputDto;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,7 +20,8 @@ import java.util.stream.Collectors;
 @RequestMapping("/produto")
 public class ProdutoController {
 
-    private ProdutoDao dao = new ProdutoDao();
+    @Autowired
+    private ProdutoDao dao;
 
     @GetMapping("/lista")
     public String lista(Model model){

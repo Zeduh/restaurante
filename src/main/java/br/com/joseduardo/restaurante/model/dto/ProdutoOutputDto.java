@@ -1,6 +1,6 @@
-package model.dto;
+package br.com.joseduardo.restaurante.model.dto;
 
-import model.Produto;
+import br.com.joseduardo.restaurante.model.Produto;
 
 import java.math.BigDecimal;
 
@@ -14,17 +14,5 @@ public class ProdutoOutputDto {
         this.id = produto.getId();
         this.nome = produto.getNome();
         this.preco = produto.getPreco();
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public BigDecimal getPreco() {
-        return preco;
     }
 }

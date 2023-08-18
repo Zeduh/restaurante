@@ -1,4 +1,4 @@
-package model;
+package br.com.joseduardo.restaurante.model;
 
 import java.math.BigDecimal;
 

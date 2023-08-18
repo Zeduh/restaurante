@@ -1,6 +1,6 @@
-package model.dto;
-import model.Categoria;
-import model.Produto;
+package br.com.joseduardo.restaurante.model.dto;
+import br.com.joseduardo.restaurante.model.Categoria;
+import br.com.joseduardo.restaurante.model.Produto;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
