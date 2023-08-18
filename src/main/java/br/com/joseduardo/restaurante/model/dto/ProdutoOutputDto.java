@@ -15,4 +15,16 @@ public class ProdutoOutputDto {
         this.nome = produto.getNome();
         this.preco = produto.getPreco();
     }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public BigDecimal getPreco() {
+        return preco;
+    }
 }
