@@ -1,8 +1,10 @@
-package model.dto;
+package br.com.joseduardo.restaurante.model.dto;
+import br.com.joseduardo.restaurante.model.Categoria;
+import br.com.joseduardo.restaurante.model.Produto;
 
-import model.Categoria;
-import model.Produto;
-
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 public class ProdutoFormImputDto {
@@ -25,10 +27,12 @@ public class ProdutoFormImputDto {
         return id;
     }
 
+    @NotBlank(message = "O Campo nome deve ser preenchido")
     public String getNome() {
         return nome;
     }
 
+    @NotBlank(message = "O campo descrição deve ser preenchido")
     public String getDescricao() {
         return descricao;
     }
@@ -37,6 +41,8 @@ public class ProdutoFormImputDto {
         return categoria;
     }
 
+    @NotNull(message = "O campo preço deve ser preenchido")
+    @Min(message = "O preço deve ser maior que 5", value = 5)
     public BigDecimal getPreco() {
         return preco;
     }

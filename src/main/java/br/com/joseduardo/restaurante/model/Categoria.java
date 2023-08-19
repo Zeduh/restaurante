@@ -1,4 +1,4 @@
-package model;
+package br.com.joseduardo.restaurante.model;
 
 public enum Categoria {
     COMIDA("Comida"),
@@ -7,7 +7,7 @@ public enum Categoria {
 
     private String descricao;
 
-    private Categoria(String descricao){
+    Categoria(String descricao){
         this.descricao = descricao;
     }
 

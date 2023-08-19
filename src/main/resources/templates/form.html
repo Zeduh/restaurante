@@ -1,18 +1,18 @@
 <html>
     <body>
     <h2>Cadastro de Produto</h2>
-      <form action="/produto/cadastra" method="post"><br/>
-          id: <input type="text" name="id" /><br/>
-          nome: <input type="text" name="nome" /><br/>
-          Descrição: <input type="text" name="descricao" /><br/>
+      <form th:object="${produtoFormImputDto}" action="/produto/cadastra" method="post"><br/>
+          nome: <input th:field="*{nome}" /> <span th:errors="*{nome}"></span> <br/>
+          Descrição: <input th:field="*{descricao}" /> <span th:errors="*{descricao}"></span> <br/>
           Categoria:
           <select name="categoria">
               <option th:each="categoria : ${categorias}" th:value="${categoria}" th:text="${categoria.descricao}"></option>
           </select><br/>
-          Preço: <input type="text" name="preco" /><br/>
+          Preço: <input th:field="*{preco}" /><span th:errors="*{preco}"></span> <br/>
 
         <input type="submit" value="Cadastra">
       </form>
+    <a th:href="@{/produto/lista}">Voltar</a>
 
     </body>
 </html>

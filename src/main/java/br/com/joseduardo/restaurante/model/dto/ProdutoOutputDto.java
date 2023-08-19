@@ -1,6 +1,6 @@
-package model.dto;
+package br.com.joseduardo.restaurante.model.dto;
 
-import model.Produto;
+import br.com.joseduardo.restaurante.model.Produto;
 
 import java.math.BigDecimal;
 
