@@ -9,7 +9,7 @@
 
     <body>
         <h3>Lista de Produtos</h3>
-
+        <a th:href="@{/produto/form}">Cadastra Produto</a>
         <span th:text="${sucesso}"></span>
 
         <table>
@@ -19,7 +19,7 @@
                 <td>Preço</td>
             </tr>
             <tr th:each="produto : ${produtos}">
-                <td th:text="${produto.id}"></td>
+                <td><a th:href="@{/produto/detalhe(id=${produto.id})}" th:text="${produto.id}"></a></td>
                 <td th:text="${produto.nome}"></td>
                 <td th:text="${produto.preco}"></td>
             </tr>

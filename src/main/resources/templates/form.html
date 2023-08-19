@@ -2,7 +2,6 @@
     <body>
     <h2>Cadastro de Produto</h2>
       <form th:object="${produtoFormImputDto}" action="/produto/cadastra" method="post"><br/>
-          id: <input th:field="*{id}" /> <br/>
           nome: <input th:field="*{nome}" /> <span th:errors="*{nome}"></span> <br/>
           Descrição: <input th:field="*{descricao}" /> <span th:errors="*{descricao}"></span> <br/>
           Categoria:
@@ -13,6 +12,7 @@
 
         <input type="submit" value="Cadastra">
       </form>
+    <a th:href="@{/produto/lista}">Voltar</a>
 
     </body>
 </html>

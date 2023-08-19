@@ -2,6 +2,7 @@ package br.com.joseduardo.restaurante.controller;
 import br.com.joseduardo.restaurante.dao.ProdutoDao;
 import br.com.joseduardo.restaurante.model.Categoria;
 import br.com.joseduardo.restaurante.model.Produto;
+import br.com.joseduardo.restaurante.model.dto.ProdutoDetalheOutputDto;
 import br.com.joseduardo.restaurante.model.dto.ProdutoFormImputDto;
 import br.com.joseduardo.restaurante.model.dto.ProdutoOutputDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.validation.Valid;
 import java.util.List;
@@ -29,7 +31,7 @@ public class ProdutoController {
         List<ProdutoOutputDto> produtosDto = dao
                 .lista()
                 .stream()
-                .map(produto -> new ProdutoOutputDto(produto))
+                .map(ProdutoOutputDto::new)
                 .collect(Collectors.toList());
         model.addAttribute("produtos", produtosDto);
         return "produtos";
@@ -54,4 +56,9 @@ public class ProdutoController {
         return "redirect:/produto/lista";
     }
 
+    @GetMapping("/detalhe")
+    public String detalhe(@RequestParam("id") Integer id, Model model){
+        model.addAttribute("produto", new ProdutoDetalheOutputDto(this.dao.buscaPorId(id)));
+        return "detalhe";
+    }
 }
