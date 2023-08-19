@@ -2,6 +2,7 @@ package br.com.joseduardo.restaurante.dao;
 
 import br.com.joseduardo.restaurante.model.Produto;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -22,4 +23,13 @@ public class ProdutoDao {
     }
 
     public Produto buscaPorId(Integer id) { return this.entityManager.find(Produto.class, id); }
+
+    @Transactional
+    public void deleta(Integer id){
+        Produto produto = this.entityManager.find(Produto.class, id);
+        this.entityManager.remove(produto);
+    }
+
+    public void altera(Integer id) {
+    }
 }

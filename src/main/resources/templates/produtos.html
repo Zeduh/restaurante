@@ -17,11 +17,15 @@
                 <td>Id</td>
                 <td>Nome</td>
                 <td>Preço</td>
+                <td></td>
+                <td></td>
             </tr>
             <tr th:each="produto : ${produtos}">
                 <td><a th:href="@{/produto/detalhe/{id}(id=${produto.id})}" th:text="${produto.id}"></a></td>
                 <td th:text="${produto.nome}"></td>
                 <td th:text="${produto.preco}"></td>
+                <td><a th:href="@{/produto/deleta(id=${produto.id})}">Excluir</a></td>
+                <td><a th:href="@{/produto/preparaAltera(id=${produto.id})}">Alterar</a></td>
             </tr>
         </table>
     </body>

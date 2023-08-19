@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    <form action="/produto/atualiza" method="POST">
+        <input type="hidden" name="id" th:value="${produto.id}">
+        Nome: <input type="text" name="nome" th:value="${produto.nome}"><br/>
+        Descrição: <input type="text" name="descricao" th:value="${produto.descricao}" ><br/>
+        Categoria:
+        <select name="categoria">
+        <option th:each="categoria : ${categorias}" th:value="${categoria}" th:text="${categoria.descricao}" th:selected="${categoria.descricao} == ${produto.categoria.descricao}"></option>
+        </select><br/>
+        Preço: <input type="text" name="preco" th:value="${produto.preco}"><br/>
+
+        <input type="submit" value="alterar">
+    </form>
+    <a th:href="@{/produto/lista}">Voltar</a>
+</body>
+</html>
