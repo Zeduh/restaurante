@@ -1,14 +1,22 @@
 package br.com.joseduardo.restaurante.model;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 
+@Entity
+@Table(name = "produtos")
 public class Produto {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nome;
     private String descricao;
+    @Enumerated(EnumType.STRING)
     private Categoria categoria;
     private BigDecimal preco;
+
+    public Produto(){}
 
     public Produto(Integer id, String nome, String descricao, Categoria categoria, BigDecimal preco) {
         this.id = id;
