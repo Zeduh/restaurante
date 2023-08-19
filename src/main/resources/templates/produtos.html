@@ -19,7 +19,7 @@
                 <td>Preço</td>
             </tr>
             <tr th:each="produto : ${produtos}">
-                <td><a th:href="@{/produto/detalhe(id=${produto.id})}" th:text="${produto.id}"></a></td>
+                <td><a th:href="@{/produto/detalhe/{id}(id=${produto.id})}" th:text="${produto.id}"></a></td>
                 <td th:text="${produto.nome}"></td>
                 <td th:text="${produto.preco}"></td>
             </tr>

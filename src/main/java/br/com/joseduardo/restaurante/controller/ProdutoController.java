@@ -10,10 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.validation.Valid;
 import java.util.List;
@@ -56,8 +53,8 @@ public class ProdutoController {
         return "redirect:/produto/lista";
     }
 
-    @GetMapping("/detalhe")
-    public String detalhe(@RequestParam("id") Integer id, Model model){
+    @GetMapping("/detalhe/{id}")
+    public String detalhe(@PathVariable Integer id, Model model){
         model.addAttribute("produto", new ProdutoDetalheOutputDto(this.dao.buscaPorId(id)));
         return "detalhe";
     }
