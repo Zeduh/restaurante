@@ -20,6 +20,16 @@ public class Cliente {
 
     private Boolean ativo;
 
+
+    public Cliente() {}
+
+    public Cliente(String nome, String email, String senha){
+        this.nome = nome;
+        this.email = email;
+        this.senha = senha;
+        this.ativo = true;
+    }
+
     @OneToMany(mappedBy = "cliente")
     private List<Endereco> enderecos = new ArrayList<>();
 
