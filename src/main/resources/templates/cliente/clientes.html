@@ -10,6 +10,7 @@
             <td>email</td>
             <td>ativo</td>
             <td></td>
+            <td></td>
         </tr>
         <tr th:each="cliente : ${clientes}">
             <td th:text="${cliente.id}"></td>
@@ -18,6 +19,9 @@
             <td th:text="${cliente.ativo} == true ? 'Ativo' : 'Inativo'"></td>
             <td>
                 <a th:href="@{/cliente/desativa(id=${cliente.id})}">Desativar</a>
+            </td>
+            <td>
+                <a th:href="@{/endereco/form(id=${cliente.id})}">Cadastra endereço</a>
             </td>
         </tr>
     </table>

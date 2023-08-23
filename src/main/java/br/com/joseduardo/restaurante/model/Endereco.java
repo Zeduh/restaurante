@@ -1,5 +1,7 @@
 package br.com.joseduardo.restaurante.model;
 
+import br.com.joseduardo.restaurante.model.dto.EnderecoInputDto;
+
 import javax.persistence.*;
 
 @Entity
@@ -16,6 +18,14 @@ public class Endereco {
 
     @ManyToOne
     private Cliente cliente;
+
+    public Endereco(){}
+
+    public Endereco(String cep, String rua, Cliente cliente){
+        this.cep = cep;
+        this.rua = rua;
+        this.cliente = cliente;
+    }
 
     public Integer getId() { return id; }
 

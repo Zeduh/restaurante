@@ -72,4 +72,8 @@ public class Cliente {
     public void setAtivo(Boolean ativo) {
         this.ativo = ativo;
     }
+
+    public void adiciona(Endereco endereco) {
+        this.enderecos.add(endereco);
+    }
 }
