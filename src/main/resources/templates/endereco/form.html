@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    <h3>Cadastro de endereço</h3>
+    <div><b>Cliente:</b> <span th:text="${cliente.nome}"></span></div>
+    <br/>
+    <form action="/endereco/cadastra" method="post">
+        <input type="hidden" name="id" th:value="${cliente.id}">
+        Cep: <input type="text" name="cep" size="10"/><br />
+        Rua: <input type="text" name="rua" size="30" /><br />
+        <br/>
+        <input type="submit" value="cadastra">
+    </form>
+    <a th:href="@{/cliente/lista}">Voltar</a>
+</body>
+</html>

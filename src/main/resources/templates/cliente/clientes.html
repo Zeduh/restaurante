@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    <h3>Clientes Cadastrados</h3>
+    <a th:href="@{/cliente/form}">cadastra cliente</a>
+    <table>
+        <tr>
+            <td>id</td>
+            <td>nome</td>
+            <td>email</td>
+            <td>ativo</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr th:each="cliente : ${clientes}">
+            <td th:text="${cliente.id}"></td>
+            <td th:text="${cliente.nome}"></td>
+            <td th:text="${cliente.email}"></td>
+            <td th:text="${cliente.ativo} == true ? 'Ativo' : 'Inativo'"></td>
+            <td>
+                <a th:href="@{/cliente/desativa(id=${cliente.id})}">Desativar</a>
+            </td>
+            <td>
+                <a th:href="@{/endereco/form(id=${cliente.id})}">Cadastra endereço</a>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
