@@ -2,6 +2,8 @@ package br.com.joseduardo.restaurante.model;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 @Entity
@@ -20,6 +22,8 @@ public class Cliente {
 
     private Boolean ativo;
 
+    @OneToMany(mappedBy = "cliente")
+    private List<Endereco> enderecos = new ArrayList<>();
 
     public Cliente() {}
 
@@ -29,9 +33,6 @@ public class Cliente {
         this.senha = senha;
         this.ativo = true;
     }
-
-    @OneToMany(mappedBy = "cliente")
-    private List<Endereco> enderecos = new ArrayList<>();
 
     public Integer getId() {
         return id;
@@ -75,5 +76,9 @@ public class Cliente {
 
     public void adiciona(Endereco endereco) {
         this.enderecos.add(endereco);
+    }
+
+    public List<Endereco> getEnderecos() {
+        return Collections.unmodifiableList(enderecos);
     }
 }

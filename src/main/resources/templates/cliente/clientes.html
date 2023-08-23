@@ -13,7 +13,9 @@
             <td></td>
         </tr>
         <tr th:each="cliente : ${clientes}">
-            <td th:text="${cliente.id}"></td>
+            <td>
+               <a th:href="@{/cliente/buscaEndereco(id=${cliente.id})}" th:text="${cliente.id}"></a>
+            </td>
             <td th:text="${cliente.nome}"></td>
             <td th:text="${cliente.email}"></td>
             <td th:text="${cliente.ativo} == true ? 'Ativo' : 'Inativo'"></td>
