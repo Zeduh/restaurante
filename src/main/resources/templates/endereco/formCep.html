@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<body>
+    <form action="/endereco/pesquisa">
+        <input type="hidden" name="id" th:value="${cliente}" />
+        CEP: <input th:type="text" name="cep" /><br/>
+        <br/>
+        <input type="submit" value="pesquisar">
+    </form><br/>
+    <a th:href="@{/cliente/lista}">Voltar</a>
+</body>
+</html>
