@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    <h3>Login de Usuário</h3>
+    <br/>
+    <span th:text="${usuarioInvalido}"></span>
+    <form action="/login" method="post">
+        Email: <input type="text" name="email" /><br/>
+        Senha: <input type="text" name="senha" />
+        <br/>
+        <input type="submit" value="entrar">
+    </form>
+</body>
+</html>

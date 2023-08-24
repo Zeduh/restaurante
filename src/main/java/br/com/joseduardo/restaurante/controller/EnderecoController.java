@@ -1,11 +1,9 @@
 package br.com.joseduardo.restaurante.controller;
-
 import br.com.joseduardo.restaurante.dao.ClienteDao;
 import br.com.joseduardo.restaurante.dao.EnderecoDao;
 import br.com.joseduardo.restaurante.model.Cliente;
 import br.com.joseduardo.restaurante.model.Endereco;
 import br.com.joseduardo.restaurante.model.dto.EnderecoInputDto;
-import br.com.joseduardo.restaurante.model.dto.EnderecoJsonDto;
 import br.com.joseduardo.restaurante.service.CepService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,7 +13,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.client.RestTemplate;
 
 @Controller
 @RequestMapping("/endereco")
