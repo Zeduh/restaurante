@@ -2,7 +2,6 @@ package br.com.joseduardo.restaurante.model;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
