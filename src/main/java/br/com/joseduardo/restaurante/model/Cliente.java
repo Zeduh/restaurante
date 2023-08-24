@@ -2,7 +2,6 @@ package br.com.joseduardo.restaurante.model;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -22,7 +21,7 @@ public class Cliente {
 
     private Boolean ativo;
 
-    @OneToMany(mappedBy = "cliente")
+    @OneToMany(mappedBy = "cliente", fetch = FetchType.EAGER)
     private List<Endereco> enderecos = new ArrayList<>();
 
     public Cliente() {}

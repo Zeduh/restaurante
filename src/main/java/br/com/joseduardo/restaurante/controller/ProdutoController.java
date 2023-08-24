@@ -13,6 +13,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -25,7 +27,11 @@ public class ProdutoController {
     private ProdutoDao dao;
 
     @GetMapping("/lista")
-    public String lista(Model model){
+    public String lista(Model model, HttpSession session){
+
+        if(session.getAttribute("logado") == null)
+            return "redirect:/";
+
         List<ProdutoOutputDto> produtosDto = dao
                 .lista()
                 .stream()
