@@ -8,7 +8,7 @@
     </head>
 
     <body>
-        Cliente: <span th:text="${session.logado.nome}"></span>
+        Cliente: <span th:text="${session.logado.nome}"></span> - <a th:href="@{/logout}">Sair</a>
         <h3>Lista de Produtos</h3>
         <a th:href="@{/produto/form}">Cadastra Produto</a>
         <span th:text="${sucesso}"></span>
