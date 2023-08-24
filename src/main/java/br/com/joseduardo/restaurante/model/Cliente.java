@@ -81,4 +81,16 @@ public class Cliente {
     public List<Endereco> getEnderecos() {
         return Collections.unmodifiableList(enderecos);
     }
+
+    @Override
+    public String toString() {
+        return "Cliente{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", email='" + email + '\'' +
+                ", senha='" + senha + '\'' +
+                ", ativo=" + ativo +
+                ", enderecos=" + enderecos +
+                '}';
+    }
 }
