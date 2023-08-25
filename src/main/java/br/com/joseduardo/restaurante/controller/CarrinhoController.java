@@ -1,7 +1,8 @@
 package br.com.joseduardo.restaurante.controller;
-
+import br.com.joseduardo.restaurante.dao.EnderecoDao;
 import br.com.joseduardo.restaurante.dao.ProdutoDao;
 import br.com.joseduardo.restaurante.model.Carrinho;
+import br.com.joseduardo.restaurante.model.Cliente;
 import br.com.joseduardo.restaurante.model.ItemDeCompra;
 import br.com.joseduardo.restaurante.model.Produto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import javax.servlet.http.HttpSession;
 
 @Controller
@@ -23,6 +24,9 @@ public class CarrinhoController {
 
     @Autowired
     private Carrinho carrinho;
+
+    @Autowired
+    private EnderecoDao enderecoDao;
 
     @PostMapping("/add")
     public  String add(Integer idProduto, Integer quantidade){
@@ -50,4 +54,14 @@ public class CarrinhoController {
 
         return "redirect:/carrinho/detalhe";
     }
+
+    @PostMapping("/finaliza")
+    public String finaliza(HttpSession session, @RequestParam("endereco") Integer id, Model model){
+        Cliente cliente = (Cliente) session.getAttribute("logado");
+        model.addAttribute("cliente", cliente);
+        model.addAttribute("compras", this.carrinho.getCompras());
+        model.addAttribute("endereco", this.enderecoDao.buscarPor(id));
+        return "/carrinho/finaliza";
+    }
+
 }

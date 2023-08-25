@@ -22,6 +22,16 @@
         </table>
         <br/>
         Total: <span th:text="${total}"></span>
+        <h4>Selecione o endereço de entrega:</h4>
+        <form action="/carrinho/finaliza" method="post">
+            <ul>
+                <li th:each="endereco : ${cliente.enderecos}">
+                    <input type="radio" name="endereco" th:value="${endereco.id}" th:text="${endereco.rua}">
+                </li>
+            </ul>
+            <br/>
+            <input type="submit" value="Finalizar compra">
+        </form>
         <br/>
         <a th:href="@{/produto/lista}">Voltar</a>
     </body>
