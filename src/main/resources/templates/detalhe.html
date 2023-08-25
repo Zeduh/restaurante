@@ -8,6 +8,12 @@
     <b>Categoria:</b> <span th:text="${produto.categoria.descricao}"></span><br/>
     <b>Preço:</b> <span th:text="${produto.preco}"></span><br/>
     <br/>
+    <form action="/carrinho/add" method="post">
+        <input type="hidden" name="idProduto" th:value="${produto.id}" />
+        <input type="text" name="quantidade" size="3">
+        <input type="submit" value="Adicionar no carrinho" />
+    </form>
+    <br/>
     <a th:href="@{/produto/lista}">Voltar</a>
 </body>
 </html>
