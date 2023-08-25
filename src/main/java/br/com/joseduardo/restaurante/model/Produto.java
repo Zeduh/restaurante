@@ -2,6 +2,7 @@ package br.com.joseduardo.restaurante.model;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.Objects;
 
 @Entity
 @Table(name = "produtos")
@@ -53,5 +54,18 @@ public class Produto {
                 ", categoria=" + categoria +
                 ", preco=" + preco +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Produto produto = (Produto) o;
+        return Objects.equals(id, produto.id) && Objects.equals(nome, produto.nome) && Objects.equals(descricao, produto.descricao) && categoria == produto.categoria && Objects.equals(preco, produto.preco);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, nome, descricao, categoria, preco);
     }
 }
