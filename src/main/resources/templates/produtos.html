@@ -8,11 +8,12 @@
     </head>
 
     <body>
-        Cliente: <span th:text="${session.logado.nome}"></span> - <a th:href="@{/logout}">Sair</a>
+        Cliente: <span th:text="${session.logado.nome}"></span> - <a th:href="@{/logout}">Sair</a><br/>
+        <br/>
+        <a th:href="@{/carrinho/detalhe}">Ver carrinho</a>
         <h3>Lista de Produtos</h3>
         <a th:href="@{/produto/form}">Cadastra Produto</a>
         <span th:text="${sucesso}"></span>
-
         <table>
             <tr>
                 <td>Id</td>

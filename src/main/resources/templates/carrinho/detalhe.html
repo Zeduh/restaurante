@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <body>
+        <h3>Detalhe da Compra</h3>
+        Cliente: <span th:text="${session.logado.nome}"></span>
+
+        <table>
+            <tr>
+                <td>Produto</td>
+                <td>Preço</td>
+                <td>Quantidade</td>
+                <td></td>
+            </tr>
+            <tr th:each="item : ${compras}">
+                <td th:text="${item.produto.nome}"></td>
+                <td th:text="${item.produto.preco}"></td>
+                <td th:text="${item.quantidade}"></td>
+                <td>
+                    <a th:href="@{/carrinho/remove(id=${item.produto.id}, quantidade=${item.quantidade})}">remover</a>
+                </td>
+            </tr>
+        </table>
+        <br/>
+        Total: <span th:text="${total}"></span>
+        <h4>Selecione o endereço de entrega:</h4>
+        <form action="/carrinho/finaliza" method="post">
+            <ul>
+                <li th:each="endereco : ${cliente.enderecos}">
+                    <input type="radio" name="endereco" th:value="${endereco.id}" th:text="${endereco.rua}">
+                </li>
+            </ul>
+            <br/>
+            <input type="submit" value="Finalizar compra">
+        </form>
+        <br/>
+        <a th:href="@{/produto/lista}">Voltar</a>
+    </body>
+</html>
