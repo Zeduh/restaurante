@@ -1,9 +1,9 @@
 package br.com.joseduardo.restaurante.controller;
-import br.com.joseduardo.restaurante.dao.ClienteDao;
-import br.com.joseduardo.restaurante.dao.EnderecoDao;
 import br.com.joseduardo.restaurante.model.Cliente;
 import br.com.joseduardo.restaurante.model.Endereco;
 import br.com.joseduardo.restaurante.model.dto.EnderecoInputDto;
+import br.com.joseduardo.restaurante.repository.ClienteRepository;
+import br.com.joseduardo.restaurante.repository.EnderecoRepository;
 import br.com.joseduardo.restaurante.service.CepService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,10 +19,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class EnderecoController {
 
     @Autowired
-    private ClienteDao clienteDao;
+    private ClienteRepository clienteDao;
 
     @Autowired
-    private EnderecoDao enderecoDao;
+    private EnderecoRepository enderecoDao;
 
     @Autowired
     private CepService cepService;
@@ -35,7 +35,7 @@ public class EnderecoController {
 
     @GetMapping("/pesquisa")
     public  String pesquisa(Integer id, String cep, Model model){
-        model.addAttribute("cliente", clienteDao.buscarPor(id));
+        model.addAttribute("cliente", clienteDao.findById(id).get());
         model.addAttribute("cep", cep);
         model.addAttribute("rua", this.cepService.getRua(cep));
         return "endereco/form";
@@ -44,10 +44,10 @@ public class EnderecoController {
     @Transactional
     @PostMapping("/cadastra")
     public String cadastra(EnderecoInputDto enderecoInputDto){
-        Cliente cliente = this.clienteDao.buscarPor(enderecoInputDto.getId());
+        Cliente cliente = this.clienteDao.findById(enderecoInputDto.getId()).get();
         Endereco endereco = enderecoInputDto.toEndereco(cliente);
 
-        this.enderecoDao.cadastra(endereco);
+        this.enderecoDao.save(endereco);
         cliente.adiciona(endereco);
         return "redirect:/cliente/lista";
     }

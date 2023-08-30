@@ -1,6 +1,6 @@
 package br.com.joseduardo.restaurante.controller;
-import br.com.joseduardo.restaurante.dao.ClienteDao;
 import br.com.joseduardo.restaurante.model.Cliente;
+import br.com.joseduardo.restaurante.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 public class LoginController {
 
     @Autowired
-    private ClienteDao clienteDao;
+    private ClienteRepository clienteDao;
 
     @GetMapping
     public String form(){
@@ -21,7 +21,7 @@ public class LoginController {
 
     @PostMapping("/login")
     public String login(String email, String senha, RedirectAttributes redirectAttributes, HttpSession session){
-        Cliente cliente = this.clienteDao.existe(email, senha);
+        Cliente cliente = this.clienteDao.findByEmailAndSenha(email, senha);
 
         if(cliente == null){
             redirectAttributes.addFlashAttribute("usuarioInvalido", "Usuário Inválido");
