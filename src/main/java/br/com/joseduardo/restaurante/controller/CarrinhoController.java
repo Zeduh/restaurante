@@ -1,10 +1,10 @@
 package br.com.joseduardo.restaurante.controller;
-import br.com.joseduardo.restaurante.dao.EnderecoDao;
-import br.com.joseduardo.restaurante.dao.ProdutoDao;
 import br.com.joseduardo.restaurante.model.Carrinho;
 import br.com.joseduardo.restaurante.model.Cliente;
 import br.com.joseduardo.restaurante.model.ItemDeCompra;
 import br.com.joseduardo.restaurante.model.Produto;
+import br.com.joseduardo.restaurante.repository.EnderecoRepository;
+import br.com.joseduardo.restaurante.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,17 +20,17 @@ import javax.servlet.http.HttpSession;
 public class CarrinhoController {
 
     @Autowired
-    private ProdutoDao produtoDao;
+    private ProdutoRepository produtoDao;
 
     @Autowired
     private Carrinho carrinho;
 
     @Autowired
-    private EnderecoDao enderecoDao;
+    private EnderecoRepository enderecoDao;
 
     @PostMapping("/add")
     public  String add(Integer idProduto, Integer quantidade){
-        Produto produto = this.produtoDao.buscaPorId(idProduto);
+        Produto produto = this.produtoDao.findById(idProduto).get();
         ItemDeCompra itemDeCompra = new ItemDeCompra(produto, quantidade);
         this.carrinho.add(itemDeCompra);
 
@@ -49,7 +49,7 @@ public class CarrinhoController {
 
     @GetMapping("/remove")
     public String remove(Integer id, Integer quantidade){
-        Produto produto = this.produtoDao.buscaPorId(id);
+        Produto produto = this.produtoDao.findById(id).get();
         this.carrinho.remove(produto, quantidade);
 
         return "redirect:/carrinho/detalhe";
@@ -60,7 +60,7 @@ public class CarrinhoController {
         Cliente cliente = (Cliente) session.getAttribute("logado");
         model.addAttribute("cliente", cliente);
         model.addAttribute("compras", this.carrinho.getCompras());
-        model.addAttribute("endereco", this.enderecoDao.buscarPor(id));
+        model.addAttribute("endereco", this.enderecoDao.findById(id).get());
         return "/carrinho/finaliza";
     }
 

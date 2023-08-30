@@ -1,9 +1,9 @@
 package br.com.joseduardo.restaurante.controller;
-import br.com.joseduardo.restaurante.dao.FuncionarioDao;
 import br.com.joseduardo.restaurante.model.Funcionario;
 import br.com.joseduardo.restaurante.model.dto.FuncionarioAlteraInputDto;
 import br.com.joseduardo.restaurante.model.dto.FuncionarioInputDto;
 import br.com.joseduardo.restaurante.model.dto.FuncionarioOutputDto;
+import br.com.joseduardo.restaurante.repository.FuncionarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,26 +17,26 @@ import java.util.List;
 public class FuncionarioController {
 
     @Autowired
-    private FuncionarioDao funcionarioDao;
+    private FuncionarioRepository funcionarioDao;
 
     @Transactional
     @PostMapping
     public ResponseEntity cadastra(@RequestBody FuncionarioInputDto dto){
         Funcionario funcionario = dto.toFuncionario();
-        funcionarioDao.cadastra(funcionario);
+        funcionarioDao.save(funcionario);
         return ResponseEntity.status(HttpStatus.CREATED).body(dto);
     }
 
     @GetMapping
     public List<FuncionarioOutputDto> lista(){
-        List<Funcionario> funcionarios = this.funcionarioDao.lista();
+        List<Funcionario> funcionarios = this.funcionarioDao.findAll();
         List<FuncionarioOutputDto> funcionarioOutputDtoList = funcionarios.stream().map(funcionario -> new FuncionarioOutputDto(funcionario)).toList();
         return  funcionarioOutputDtoList;
     }
 
     @GetMapping("/{id}")
     public FuncionarioOutputDto buscaPor(@PathVariable Integer id){
-        Funcionario funcionario = this.funcionarioDao.buscaPor(id);
+        Funcionario funcionario = this.funcionarioDao.findById(id).get();
         FuncionarioOutputDto dto = new FuncionarioOutputDto(funcionario);
         return dto;
     }
@@ -44,13 +44,13 @@ public class FuncionarioController {
     @Transactional
     @DeleteMapping("/{id}")
     public void deleta(@PathVariable Integer id){
-        this.funcionarioDao.remove(id);
+        this.funcionarioDao.deleteById(id);
     }
 
     @Transactional
     @PutMapping
     public void altera(@RequestBody FuncionarioAlteraInputDto dto){
-        Funcionario funcionario = this.funcionarioDao.buscaPor(dto.getId());
+        Funcionario funcionario = this.funcionarioDao.findById(dto.getId()).get();
         funcionario.setEmail(dto.getEmail());
         funcionario.setSalario(dto.getSalario());
     }
