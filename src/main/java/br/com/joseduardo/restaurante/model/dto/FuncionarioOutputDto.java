@@ -14,6 +14,9 @@ public class FuncionarioOutputDto {
         this.salario = funcionario.getSalario();
     }
 
+
+
+
     public String getNome() { return nome; }
 
     public BigDecimal getSalario() { return salario; }
